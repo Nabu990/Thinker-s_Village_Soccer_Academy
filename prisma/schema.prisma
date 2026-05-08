@@ -1,0 +1,184 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String   @id @default(cuid())
+  email       String   @unique
+  password    String
+  name        String
+  role        UserRole @default(FAN)
+  profileImage String?
+  phoneNumber String?
+  address     String?
+  dateOfBirth DateTime?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  player Player?
+  coach  Coach?
+  galleryItems Gallery[]
+
+  @@map("users")
+}
+
+model Player {
+  id           String     @id @default(cuid())
+  userId       String     @unique
+  jerseyNumber Int
+  position     Position
+  height       Float?
+  weight       Float?
+  preferredFoot PreferredFoot @default(RIGHT)
+  speed        Int        @default(50)
+  shooting     Int        @default(50)
+  passing      Int        @default(50)
+  dribbling    Int        @default(50)
+  defending    Int        @default(50)
+  physical     Int        @default(50)
+  achievements String[]
+  allergies    String?
+  medications   String?
+  emergencyContact String?
+  emergencyPhone String?
+  team         Team       @default(U_15)
+  status       PlayerStatus @default(ACTIVE)
+  joiningDate  DateTime   @default(now())
+  contractExpiry DateTime?
+  notes        String?
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("players")
+}
+
+model Coach {
+  id               String     @id @default(cuid())
+  userId           String     @unique
+  specialization   String[]
+  experience       Int
+  certifications   String[]
+  qualifications   String[]
+  coachingLicense String
+  bio              String
+  achievements     String[]
+  teams            Team[]
+  hourlyRate       Float?
+  mondayAvailable  Boolean    @default(false)
+  mondayStart      String?
+  mondayEnd        String?
+  tuesdayAvailable Boolean    @default(false)
+  tuesdayStart     String?
+  tuesdayEnd       String?
+  wednesdayAvailable Boolean  @default(false)
+  wednesdayStart   String?
+  wednesdayEnd     String?
+  thursdayAvailable Boolean   @default(false)
+  thursdayStart    String?
+  thursdayEnd      String?
+  fridayAvailable  Boolean    @default(false)
+  fridayStart      String?
+  fridayEnd        String?
+  saturdayAvailable Boolean   @default(false)
+  saturdayStart    String?
+  saturdayEnd      String?
+  sundayAvailable  Boolean    @default(false)
+  sundayStart      String?
+  sundayEnd        String?
+  status           CoachStatus @default(ACTIVE)
+  joiningDate      DateTime   @default(now())
+  contractExpiry   DateTime?
+  notes            String?
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("coaches")
+}
+
+model Gallery {
+  id            String       @id @default(cuid())
+  title         String
+  description   String
+  imageUrl      String
+  imagePublicId String
+  category      GalleryCategory @default(TRAINING)
+  tags          String[]
+  uploadedBy    String
+  date          DateTime     @default(now())
+  featured      Boolean      @default(false)
+  likes         Int          @default(0)
+  views         Int          @default(0)
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  // Relations
+  uploader User @relation(fields: [uploadedBy], references: [id], onDelete: Cascade)
+
+  @@map("gallery")
+}
+
+// Enums
+enum UserRole {
+  MANAGER
+  COACH
+  FAN
+  PLAYER
+}
+
+enum Position {
+  GOALKEEPER
+  DEFENDER
+  MIDFIELDER
+  FORWARD
+}
+
+enum PreferredFoot {
+  LEFT
+  RIGHT
+  BOTH
+}
+
+enum Team {
+  U_15
+  U_17
+  U_20
+  SENIOR
+}
+
+enum PlayerStatus {
+  ACTIVE
+  INJURED
+  SUSPENDED
+  TRANSFERRED
+}
+
+enum CoachStatus {
+  ACTIVE
+  ON_LEAVE
+  INACTIVE
+}
+
+enum GalleryCategory {
+  MATCH
+  TRAINING
+  EVENT
+  AWARD
+  FACILITY
+  TEAM
+}
