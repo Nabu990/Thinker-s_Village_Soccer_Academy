@@ -1,9 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Canvas } from '@react-three/fiber'
-import { OrbitControls, Box, Plane } from '@react-three/drei'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -23,7 +20,11 @@ import {
   Globe,
   Medal,
   Flag,
-  Activity
+  Activity,
+  Mail,
+  Phone,
+  MessageSquare,
+  Send
 } from 'lucide-react'
 import Link from 'next/link'
 import { Suspense } from 'react'
@@ -218,21 +219,21 @@ export default function HomePage() {
                 title: "Technical Excellence",
                 description: "Master fundamental skills through advanced training methodologies",
                 features: ["Ball Control", "Passing Accuracy", "Shooting Precision", "Dribbling Techniques"],
-                color: "blue"
+                colorClass: "blue"
               },
               {
                 icon: Shield,
                 title: "Physical Conditioning",
                 description: "Build strength, speed, and endurance with professional fitness programs",
                 features: ["Strength Training", "Speed Development", "Endurance Building", "Injury Prevention"],
-                color: "purple"
+                colorClass: "purple"
               },
               {
                 icon: Heart,
                 title: "Character Development",
                 description: "Foster leadership, discipline, and sportsmanship in every player",
                 features: ["Leadership Skills", "Teamwork", "Discipline", "Sportsmanship"],
-                color: "green"
+                colorClass: "green"
               }
             ].map((feature, index) => (
               <motion.div
@@ -243,8 +244,8 @@ export default function HomePage() {
               >
                 <Card className="h-full border-0 shadow-xl hover:shadow-2xl transition-shadow duration-300">
                   <CardHeader className="pb-6">
-                    <div className={`w-16 h-16 bg-${feature.color}-100 rounded-2xl flex items-center justify-center mb-6`}>
-                      <feature.icon className={`w-8 h-8 text-${feature.color}-600`} />
+                    <div className={`w-16 h-16 ${feature.colorClass === 'blue' ? 'bg-blue-100' : feature.colorClass === 'purple' ? 'bg-purple-100' : 'bg-green-100'} rounded-2xl flex items-center justify-center mb-6`}>
+                      <feature.icon className={`w-8 h-8 ${feature.colorClass === 'blue' ? 'text-blue-600' : feature.colorClass === 'purple' ? 'text-purple-600' : 'text-green-600'}`} />
                     </div>
                     <CardTitle className="text-2xl font-bold text-gray-900 mb-3">
                       {feature.title}
@@ -257,7 +258,7 @@ export default function HomePage() {
                     <ul className="space-y-3">
                       {feature.features.map((item, idx) => (
                         <li key={idx} className="flex items-center">
-                          <ChevronRight className={`w-5 h-5 text-${feature.color}-600 mr-3 flex-shrink-0`} />
+                          <ChevronRight className={`w-5 h-5 ${feature.colorClass === 'blue' ? 'text-blue-600' : feature.colorClass === 'purple' ? 'text-purple-600' : 'text-green-600'} mr-3 flex-shrink-0`} />
                           <span className="text-gray-700">{item}</span>
                         </li>
                       ))}
@@ -297,7 +298,7 @@ export default function HomePage() {
                 description: "Build strong fundamentals and love for the game",
                 highlights: ["Basic Techniques", "Physical Development", "Match Experience", "Character Building"],
                 schedule: "Mon, Wed, Fri: 4-6 PM",
-                color: "yellow"
+                colorClass: "yellow"
               },
               {
                 age: "U-17",
@@ -306,7 +307,7 @@ export default function HomePage() {
                 description: "Advanced skills and tactical understanding",
                 highlights: ["Advanced Skills", "Tactical Awareness", "Competition Prep", "Leadership Training"],
                 schedule: "Tue, Thu, Sat: 4-6 PM",
-                color: "blue"
+                colorClass: "blue"
               },
               {
                 age: "Senior",
@@ -315,7 +316,7 @@ export default function HomePage() {
                 description: "Professional-level training and career development",
                 highlights: ["Professional Coaching", "Tournament Play", "Career Guidance", "Mentorship"],
                 schedule: "Daily: 5-7 PM",
-                color: "purple"
+                colorClass: "purple"
               }
             ].map((program, index) => (
               <motion.div
@@ -326,11 +327,11 @@ export default function HomePage() {
               >
                 <Card className="h-full border-0 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
                   <CardHeader className="relative pb-6">
-                    <div className={`absolute top-4 right-4 bg-${program.color}-500 text-white px-3 py-1 rounded-full text-sm font-bold`}>
+                    <div className={`absolute top-4 right-4 ${program.colorClass === 'yellow' ? 'bg-yellow-500' : program.colorClass === 'blue' ? 'bg-blue-500' : 'bg-purple-500'} text-white px-3 py-1 rounded-full text-sm font-bold`}>
                       {program.age}
                     </div>
-                    <div className={`w-20 h-20 bg-${program.color}-100 rounded-2xl flex items-center justify-center mb-6`}>
-                      <Activity className={`w-10 h-10 text-${program.color}-600`} />
+                    <div className={`w-20 h-20 ${program.colorClass === 'yellow' ? 'bg-yellow-100' : program.colorClass === 'blue' ? 'bg-blue-100' : 'bg-purple-100'} rounded-2xl flex items-center justify-center mb-6`}>
+                      <Activity className={`w-10 h-10 ${program.colorClass === 'yellow' ? 'text-yellow-600' : program.colorClass === 'blue' ? 'text-blue-600' : 'text-purple-600'}`} />
                     </div>
                     <CardTitle className="text-2xl font-bold text-gray-900 mb-2">
                       {program.title}
@@ -347,7 +348,7 @@ export default function HomePage() {
                         <ul className="space-y-2">
                           {program.highlights.map((highlight, idx) => (
                             <li key={idx} className="flex items-center text-sm">
-                              <div className={`w-2 h-2 bg-${program.color}-500 rounded-full mr-3`}></div>
+                              <div className={`w-2 h-2 ${program.colorClass === 'yellow' ? 'bg-yellow-500' : program.colorClass === 'blue' ? 'bg-blue-500' : 'bg-purple-500'} rounded-full mr-3`}></div>
                               <span className="text-gray-700">{highlight}</span>
                             </li>
                           ))}
@@ -456,6 +457,208 @@ export default function HomePage() {
               </Link>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <div className="mb-12">
+              <div className="w-20 h-20 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                <Heart className="w-10 h-10 text-white" />
+              </div>
+              <h2 className="text-3xl font-bold text-gray-800 mb-4">About Thinker's Village Soccer Academy</h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                We are a premier football academy dedicated to developing young talent into professional athletes. 
+                Since 2019, we've been providing elite training, character development, and international exposure 
+                to aspiring footballers in Liberia and beyond.
+              </p>
+            </div>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { icon: Shield, title: "Discipline", description: "Maintaining high standards in training and behavior" },
+              { icon: Users, title: "Teamwork", description: "Working together toward common goals" },
+              { icon: Star, title: "Excellence", description: "Striving for greatness in all endeavors" },
+              { icon: Heart, title: "Integrity", description: "Building character through honest competition" }
+            ].map((value, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 * index }}
+                viewport={{ once: true }}
+                className="text-center"
+              >
+                <Card className="card hover:shadow-xl transition-shadow duration-300">
+                  <CardContent className="pt-6">
+                    <div className="w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <value.icon className="w-8 h-8 text-white" />
+                    </div>
+                    <h3 className="font-semibold text-gray-800 mb-2">{value.title}</h3>
+                    <p className="text-gray-600 text-sm">{value.description}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <div className="mb-12">
+              <div className="w-20 h-20 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                <Mail className="w-10 h-10 text-white" />
+              </div>
+              <h2 className="text-3xl font-bold text-gray-800 mb-4">Get In Touch</h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Have questions about Thinker's Village Soccer Academy? We'd love to hear from you.
+              </p>
+            </div>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-2 gap-12">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="space-y-6"
+            >
+              <Card className="card hover:shadow-xl transition-shadow duration-300">
+                <CardContent className="pt-6">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Mail className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-800 mb-1">Email</h3>
+                      <p className="text-gray-600 text-sm">info@thinkersvillage.com</p>
+                      <p className="text-gray-600 text-sm">admissions@thinkersvillage.com</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="card hover:shadow-xl transition-shadow duration-300">
+                <CardContent className="pt-6">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Phone className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-800 mb-1">Phone</h3>
+                      <p className="text-gray-600 text-sm">+231 (0) 77 038 1510</p>
+                      <p className="text-gray-600 text-sm">Mon-Fri, 8am-6pm</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="card hover:shadow-xl transition-shadow duration-300">
+                <CardContent className="pt-6">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <MapPin className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-800 mb-1">Location</h3>
+                      <p className="text-gray-600 text-sm">Thinker's Village</p>
+                      <p className="text-gray-600 text-sm">Monrovia, Liberia</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+            >
+              <Card className="card">
+                <CardHeader>
+                  <CardTitle className="flex items-center">
+                    <MessageSquare className="w-6 h-6 mr-2 text-emerald-600" />
+                    Send Us a Message
+                  </CardTitle>
+                  <CardDescription>
+                    Fill out the form below and we'll get back to you within 24 hours.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <form className="space-y-4">
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Name *</label>
+                        <input
+                          type="text"
+                          required
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors"
+                          placeholder="Your name"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                        <input
+                          type="email"
+                          required
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors"
+                          placeholder="your@email.com"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Subject *</label>
+                      <select
+                        required
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors"
+                      >
+                        <option value="">Select a subject</option>
+                        <option value="admissions">Admissions Inquiry</option>
+                        <option value="training">Training Programs</option>
+                        <option value="general">General Inquiry</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Message *</label>
+                      <textarea
+                        required
+                        rows={4}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors resize-none"
+                        placeholder="Tell us more about your inquiry..."
+                      />
+                    </div>
+                    <Button
+                      type="submit"
+                      className="w-full btn-primary text-lg py-4 flex items-center justify-center shadow-lg hover:shadow-xl transform transition-all duration-300"
+                    >
+                      <Send className="w-5 h-5 mr-2" />
+                      Send Message
+                    </Button>
+                  </form>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
         </div>
       </section>
     </div>
