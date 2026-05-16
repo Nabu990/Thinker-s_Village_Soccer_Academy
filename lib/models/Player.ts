@@ -1,6 +1,6 @@
 'use server'
 
-import mongoose from 'mongoose'
+// Type definitions only — Mongoose models were removed. Use Prisma for runtime DB operations.
 
 export interface IPlayer {
   _id: string
@@ -34,77 +34,4 @@ export interface IPlayer {
   updatedAt: Date
 }
 
-const playerSchema = new mongoose.Schema<IPlayer>({
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
-  },
-  jerseyNumber: {
-    type: Number,
-    required: true,
-    min: 1,
-    max: 99
-  },
-  position: {
-    type: String,
-    required: true,
-    enum: ['goalkeeper', 'defender', 'midfielder', 'forward']
-  },
-  height: {
-    type: Number,
-    min: 100,
-    max: 250
-  },
-  weight: {
-    type: Number,
-    min: 30,
-    max: 150
-  },
-  preferredFoot: {
-    type: String,
-    required: true,
-    enum: ['left', 'right', 'both'],
-    default: 'right'
-  },
-  skills: {
-    speed: { type: Number, min: 0, max: 100, default: 50 },
-    shooting: { type: Number, min: 0, max: 100, default: 50 },
-    passing: { type: Number, min: 0, max: 100, default: 50 },
-    dribbling: { type: Number, min: 0, max: 100, default: 50 },
-    defending: { type: Number, min: 0, max: 100, default: 50 },
-    physical: { type: Number, min: 0, max: 100, default: 50 }
-  },
-  achievements: [{
-    type: String
-  }],
-  medicalInfo: {
-    allergies: String,
-    medications: String,
-    emergencyContact: String,
-    emergencyPhone: String
-  },
-  team: {
-    type: String,
-    required: true,
-    enum: ['U-15', 'U-17', 'U-20', 'Senior'],
-    default: 'U-15'
-  },
-  status: {
-    type: String,
-    required: true,
-    enum: ['active', 'injured', 'suspended', 'transferred'],
-    default: 'active'
-  },
-  joiningDate: {
-    type: Date,
-    required: true,
-    default: Date.now
-  },
-  contractExpiry: Date,
-  notes: String
-}, {
-  timestamps: true
-})
-
-export const Player = (mongoose.models && mongoose.models.Player) || mongoose.model('Player', playerSchema)
+export const Player = undefined as unknown as any

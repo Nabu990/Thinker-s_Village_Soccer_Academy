@@ -1,38 +1,7 @@
-'use server'
+// This project no longer uses a MongoDB connection. The previous Mongoose-based
+// connection utilities have been removed. If you need MongoDB for specific
+// features, re-add a connection util and set MONGODB_URI in your environment.
 
-import mongoose from 'mongoose'
-
-const MONGODB_URI = process.env.MONGODB_URI || ''
-
-if (!MONGODB_URI) {
-  console.warn('MongoDB URI not configured - MongoDB features will be unavailable')
-}
-
-let cached = (global as any).mongoose || { conn: null, promise: null }
-
-if (!cached) {
-  cached = (global as any).mongoose = { conn: null, promise: null }
-}
-
-export async function connectToDatabase() {
-  if (cached.conn) {
-    return cached.conn
-  }
-
-  if (!cached.promise && MONGODB_URI) {
-    const opts = {
-      bufferCommands: false,
-    }
-
-    cached.promise = mongoose.connect(MONGODB_URI, opts)
-  }
-
-  try {
-    cached.conn = await cached.promise
-  } catch (e) {
-    cached.promise = null
-    throw e
-  }
-
-  return cached.conn
+export function connectToDatabase() {
+  throw new Error('Mongoose/MongoDB support removed. Use Prisma/Postgres or re-enable MongoDB manually.')
 }

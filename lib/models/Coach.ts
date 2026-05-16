@@ -1,6 +1,6 @@
 'use server'
 
-import mongoose from 'mongoose'
+// Type definitions only — Mongoose models were removed. Use Prisma for runtime DB operations.
 
 export interface ICoach {
   _id: string
@@ -31,72 +31,4 @@ export interface ICoach {
   updatedAt: Date
 }
 
-const coachSchema = new mongoose.Schema<ICoach>({
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
-  },
-  specialization: [{
-    type: String,
-    required: true
-  }],
-  experience: {
-    type: Number,
-    required: true,
-    min: 0,
-    max: 50
-  },
-  certifications: [{
-    type: String
-  }],
-  qualifications: [{
-    type: String
-  }],
-  coachingLicense: {
-    type: String,
-    required: true
-  },
-  bio: {
-    type: String,
-    required: true,
-    maxlength: 1000
-  },
-  achievements: [{
-    type: String
-  }],
-  teams: [{
-    type: String,
-    enum: ['U-15', 'U-17', 'U-20', 'Senior']
-  }],
-  hourlyRate: {
-    type: Number,
-    min: 0
-  },
-  availability: {
-    monday: { available: { type: Boolean, default: false }, startTime: String, endTime: String },
-    tuesday: { available: { type: Boolean, default: false }, startTime: String, endTime: String },
-    wednesday: { available: { type: Boolean, default: false }, startTime: String, endTime: String },
-    thursday: { available: { type: Boolean, default: false }, startTime: String, endTime: String },
-    friday: { available: { type: Boolean, default: false }, startTime: String, endTime: String },
-    saturday: { available: { type: Boolean, default: false }, startTime: String, endTime: String },
-    sunday: { available: { type: Boolean, default: false }, startTime: String, endTime: String }
-  },
-  status: {
-    type: String,
-    required: true,
-    enum: ['active', 'on-leave', 'inactive'],
-    default: 'active'
-  },
-  joiningDate: {
-    type: Date,
-    required: true,
-    default: Date.now
-  },
-  contractExpiry: Date,
-  notes: String
-}, {
-  timestamps: true
-})
-
-export const Coach = (mongoose.models && mongoose.models.Coach) || mongoose.model('Coach', coachSchema)
+export const Coach = undefined as unknown as any

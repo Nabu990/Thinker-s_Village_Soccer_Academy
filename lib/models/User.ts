@@ -1,6 +1,6 @@
 'use server'
 
-import mongoose from 'mongoose'
+// Type definitions only — Mongoose models were removed. Use Prisma for runtime DB operations.
 
 export interface IUser {
   _id: string
@@ -17,51 +17,5 @@ export interface IUser {
   updatedAt: Date
 }
 
-const userSchema = new mongoose.Schema<IUser>({
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-    lowercase: true,
-    trim: true
-  },
-  password: {
-    type: String,
-    required: true,
-    minlength: 6
-  },
-  name: {
-    type: String,
-    required: true,
-    trim: true
-  },
-  role: {
-    type: String,
-    required: true,
-    enum: ['manager', 'fan', 'player'],
-    default: 'fan'
-  },
-  profileImage: {
-    type: String,
-    default: ''
-  },
-  phoneNumber: {
-    type: String,
-    default: ''
-  },
-  address: {
-    type: String,
-    default: ''
-  },
-  dateOfBirth: {
-    type: Date
-  },
-  isActive: {
-    type: Boolean,
-    default: true
-  }
-}, {
-  timestamps: true
-})
-
-export const User = (mongoose.models && mongoose.models.User) || mongoose.model('User', userSchema)
+// Runtime Mongoose model removed. Use Prisma client (lib/prisma.ts) instead.
+export const User = undefined as unknown as any
