@@ -185,7 +185,7 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {user.role === 'manager' && (
+              {user.role === 'MANAGER' && (
                 <>
                   <Link href="/dashboard/manager/players">
                     <Button className="w-full justify-start" variant="outline">
@@ -207,7 +207,7 @@ export default function DashboardPage() {
                   </Link>
                 </>
               )}
-              {user.role === 'player' && (
+              {user.role === 'PLAYER' && (
                 <>
                   <Link href="/dashboard/player/profile">
                     <Button className="w-full justify-start" variant="outline">
@@ -229,7 +229,7 @@ export default function DashboardPage() {
                   </Link>
                 </>
               )}
-              {user.role === 'fan' && (
+              {user.role === 'FAN' && (
                 <>
                   <Link href="/dashboard/fan/team">
                     <Button className="w-full justify-start" variant="outline">

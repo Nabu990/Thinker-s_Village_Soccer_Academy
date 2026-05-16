@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-import { verifyToken } from '@/lib/auth-prisma'
+import { verifyToken } from '@/lib/auth-edge'
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   // Public routes that don't require authentication
@@ -27,7 +27,7 @@ export function middleware(request: NextRequest) {
   }
 
   // Verify token
-  const payload = verifyToken(token)
+  const payload = await verifyToken(token)
   if (!payload) {
     // Token is invalid, redirect to login
     const response = NextResponse.redirect(new URL('/auth/login', request.url))

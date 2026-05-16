@@ -4,7 +4,7 @@
 
 export interface IPlayer {
   _id: string
-  userId: string
+  userId: mongoose.Types.ObjectId
   jerseyNumber: number
   position: 'goalkeeper' | 'defender' | 'midfielder' | 'forward'
   height?: number

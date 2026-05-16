@@ -1,7 +1,6 @@
 'use client'
 
 import React, { createContext, useContext, useEffect, useState } from 'react'
-import { JWTPayload } from '@/lib/auth'
 
 interface AuthUser {
   id: string

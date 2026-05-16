@@ -205,7 +205,7 @@ export default function CoachesPage() {
                 <div>
                   <p className="text-sm text-gray-600">Teams Covered</p>
                   <p className="text-2xl font-bold">
-                    {[...new Set(coaches.flatMap(c => c.teams))].length}
+                    {Array.from(new Set(coaches.flatMap(c => c.teams))).length}
                   </p>
                 </div>
                 <Users className="w-8 h-8 text-orange-600" />

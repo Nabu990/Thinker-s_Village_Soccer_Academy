@@ -53,7 +53,7 @@ export async function GET(request: NextRequest) {
     })
 
     // Transform data to match expected format
-    const usersWithProfiles = users.map(user => ({
+    const usersWithProfiles = users.map((user: any) => ({
       ...user,
       hasPlayerProfile: !!user.player,
       hasCoachProfile: !!user.coach,

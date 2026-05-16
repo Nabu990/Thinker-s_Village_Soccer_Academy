@@ -10,7 +10,7 @@ export interface IGallery {
   imagePublicId: string
   category: 'match' | 'training' | 'event' | 'award' | 'facility' | 'team'
   tags: string[]
-  uploadedBy: string
+  uploadedBy: mongoose.Types.ObjectId
   date: Date
   featured: boolean
   likes: number

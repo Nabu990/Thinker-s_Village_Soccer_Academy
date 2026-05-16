@@ -4,7 +4,7 @@
 
 export interface ICoach {
   _id: string
-  userId: string
+  userId: mongoose.Types.ObjectId
   specialization: string[]
   experience: number
   certifications: string[]
