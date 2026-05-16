@@ -1,3 +1,5 @@
+'use server'
+
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import { prisma } from './prisma'
@@ -37,6 +39,7 @@ export async function createUser(userData: {
   phoneNumber?: string
   address?: string
   dateOfBirth?: Date
+  isActive?: boolean
 }) {
   const existingUser = await prisma.user.findUnique({
     where: { email: userData.email }
@@ -50,9 +53,15 @@ export async function createUser(userData: {
   
   const user = await prisma.user.create({
     data: {
-      ...userData,
+      email: userData.email,
       password: hashedPassword,
-      dateOfBirth: userData.dateOfBirth || undefined
+      name: userData.name,
+      role: userData.role,
+      phoneNumber: userData.phoneNumber || '',
+      address: userData.address || '',
+      dateOfBirth: userData.dateOfBirth || undefined,
+      isActive: userData.isActive !== undefined ? userData.isActive : true,
+      profileImage: ''
     }
   })
 
@@ -60,8 +69,11 @@ export async function createUser(userData: {
 }
 
 export async function authenticateUser(email: string, password: string) {
-  const user = await prisma.user.findUnique({
-    where: { email, isActive: true }
+  const user = await prisma.user.findFirst({
+    where: { 
+      email: email,
+      isActive: true 
+    }
   })
 
   if (!user) {
@@ -76,7 +88,7 @@ export async function authenticateUser(email: string, password: string) {
   const payload: JWTPayload = {
     userId: user.id,
     email: user.email,
-    role: user.role.toLowerCase() as 'manager' | 'fan' | 'player' | 'coach',
+    role: user.role as 'MANAGER' | 'FAN' | 'PLAYER' | 'COACH',
     name: user.name
   }
 
@@ -87,7 +99,7 @@ export async function authenticateUser(email: string, password: string) {
       id: user.id,
       email: user.email,
       name: user.name,
-      role: user.role.toLowerCase() as 'manager' | 'fan' | 'player' | 'coach',
+      role: user.role,
       profileImage: user.profileImage,
       phoneNumber: user.phoneNumber,
       address: user.address,
