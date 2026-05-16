@@ -1,15 +1,17 @@
+'use server'
+
 import mongoose from 'mongoose'
 
-const MONGODB_URI = process.env.MONGODB_URI!
+const MONGODB_URI = process.env.MONGODB_URI || ''
 
 if (!MONGODB_URI) {
-  throw new Error('Please define the MONGODB_URI environment variable')
+  console.warn('MongoDB URI not configured - MongoDB features will be unavailable')
 }
 
-let cached = global.mongoose
+let cached = (global as any).mongoose || { conn: null, promise: null }
 
 if (!cached) {
-  cached = global.mongoose = { conn: null, promise: null }
+  cached = (global as any).mongoose = { conn: null, promise: null }
 }
 
 export async function connectToDatabase() {
@@ -17,7 +19,7 @@ export async function connectToDatabase() {
     return cached.conn
   }
 
-  if (!cached.promise) {
+  if (!cached.promise && MONGODB_URI) {
     const opts = {
       bufferCommands: false,
     }
