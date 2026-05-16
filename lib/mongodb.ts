@@ -1,28 +1,32 @@
+'use server'
+
 import { MongoClient } from 'mongodb'
 
-if (!process.env.MONGODB_URI) {
-  throw new Error('Invalid/Missing environment variable: "MONGODB_URI"')
-}
-
-const uri = process.env.MONGODB_URI
+const uri = process.env.MONGODB_URI || ''
 const options = {}
 
-let client: MongoClient
-let clientPromise: Promise<MongoClient>
+let client: MongoClient | null = null
+let clientPromise: Promise<MongoClient> | null = null
 
 declare global {
-  var _mongoClientPromise: Promise<MongoClient>
+  var _mongoClientPromise: Promise<MongoClient> | undefined
 }
 
-if (process.env.NODE_ENV === 'development') {
-  if (!global._mongoClientPromise) {
-    client = new MongoClient(uri, options)
-    global._mongoClientPromise = client.connect()
-  }
-  clientPromise = global._mongoClientPromise
+if (!uri) {
+  console.warn('MongoDB URI not configured - MongoDB client will not be initialized')
 } else {
-  client = new MongoClient(uri, options)
-  clientPromise = client.connect()
+  if (process.env.NODE_ENV === 'development') {
+    if (!global._mongoClientPromise && uri) {
+      client = new MongoClient(uri, options)
+      global._mongoClientPromise = client.connect()
+    }
+    clientPromise = global._mongoClientPromise || null
+  } else {
+    if (uri) {
+      client = new MongoClient(uri, options)
+      clientPromise = client.connect()
+    }
+  }
 }
 
 export default clientPromise
