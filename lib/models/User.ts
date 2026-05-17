@@ -1,5 +1,3 @@
-'use server'
-
 // Type definitions only — Mongoose models were removed. Use Prisma for runtime DB operations.
 
 export interface IUser {

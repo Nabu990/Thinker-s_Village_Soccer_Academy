@@ -1,10 +1,8 @@
-'use server'
-
 // Type definitions only — Mongoose models were removed. Use Prisma for runtime DB operations.
 
 export interface ICoach {
   _id: string
-  userId: mongoose.Types.ObjectId
+  userId: string
   specialization: string[]
   experience: number
   certifications: string[]

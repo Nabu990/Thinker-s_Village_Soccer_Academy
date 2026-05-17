@@ -1,5 +1,3 @@
-'use server'
-
 // Type definitions only — Mongoose models were removed. Use Prisma for runtime DB operations.
 
 export interface IGallery {
@@ -10,7 +8,7 @@ export interface IGallery {
   imagePublicId: string
   category: 'match' | 'training' | 'event' | 'award' | 'facility' | 'team'
   tags: string[]
-  uploadedBy: mongoose.Types.ObjectId
+  uploadedBy: string
   date: Date
   featured: boolean
   likes: number

@@ -1,10 +1,8 @@
-'use server'
-
 // Type definitions only — Mongoose models were removed. Use Prisma for runtime DB operations.
 
 export interface IPlayer {
   _id: string
-  userId: mongoose.Types.ObjectId
+  userId: string
   jerseyNumber: number
   position: 'goalkeeper' | 'defender' | 'midfielder' | 'forward'
   height?: number
