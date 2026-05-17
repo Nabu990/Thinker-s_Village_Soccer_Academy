@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
       const existingPlayer = await prisma.player.findFirst({
         where: {
           jerseyNumber: parseInt(jerseyNumber),
-          team: 'U-15' // Default team for new registrations
+          team: 'U_15' // Default team for new registrations
         }
       })
 
@@ -64,16 +64,14 @@ export async function POST(request: NextRequest) {
           height: height ? parseInt(height) : null,
           weight: weight ? parseInt(weight) : null,
           preferredFoot: preferredFoot?.toUpperCase() || 'RIGHT',
-          team: 'U-15',
+          team: 'U_15',
           status: 'PENDING', // Players start as pending
-          skills: {
-            speed: 50,
-            shooting: 50,
-            passing: 50,
-            dribbling: 50,
-            defending: 50,
-            physical: 50
-          }
+          speed: 50,
+          shooting: 50,
+          passing: 50,
+          dribbling: 50,
+          defending: 50,
+          physical: 50
         }
       })
 

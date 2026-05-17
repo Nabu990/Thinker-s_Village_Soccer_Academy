@@ -162,6 +162,7 @@ enum Team {
 }
 
 enum PlayerStatus {
+  PENDING
   ACTIVE
   INJURED
   SUSPENDED

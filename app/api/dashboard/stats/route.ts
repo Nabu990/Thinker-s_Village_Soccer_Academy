@@ -30,7 +30,7 @@ export async function GET(request: NextRequest) {
         where: { status: 'ACTIVE' }
       }),
       prisma.gallery.count(),
-      prisma.$queryRaw`SELECT COUNT(DISTINCT team) as count FROM players WHERE status = 'ACTIVE'`
+      prisma.$queryRaw<Array<{ count: bigint }>>`SELECT COUNT(DISTINCT team) as count FROM players WHERE status = 'ACTIVE'`
     ])
 
     // Calculate derived stats

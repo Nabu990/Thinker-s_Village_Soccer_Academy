@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.2",
@@ -26,9 +27,7 @@
     "clsx": "^2.0.0",
     "date-fns": "^2.30.0",
     "framer-motion": "^10.16.16",
-    "@types/bcryptjs": "^2.4.6",
     "jsonwebtoken": "^9.0.2",
-    "@types/jsonwebtoken": "^9.0.5",
     "multer": "^1.4.5-lts.1",
     "next": "14.0.4",
     "next-auth": "^4.24.5",
@@ -46,6 +45,10 @@
     "lucide-react": "^0.294.0"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.5",
+    "@types/multer": "^1.4.11",
     "eslint": "^8",
     "eslint-config-next": "14.0.4"
   }
