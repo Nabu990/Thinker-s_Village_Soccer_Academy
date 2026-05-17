@@ -76,7 +76,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex">
+    <div className="flex min-h-screen min-w-0 overflow-x-hidden bg-gradient-to-br from-gray-50 to-gray-100">
       {/* Mobile sidebar backdrop */}
       {sidebarOpen && (
         <motion.div 
@@ -90,19 +90,19 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
 
       {/* Sidebar */}
       <div className={`
-        fixed inset-y-0 left-0 z-50 w-72 bg-white shadow-2xl transform transition-all duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 lg:shadow-xl
+        fixed inset-y-0 left-0 z-50 w-[min(18rem,85vw)] bg-white shadow-2xl transform transition-all duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 lg:w-72 lg:shadow-xl
         ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
       `}>
         <div className="flex flex-col h-full">
           {/* Logo */}
-          <div className="flex items-center justify-between p-6 bg-gradient-to-r from-emerald-600 to-teal-600 text-white">
-            <div className="flex items-center">
+          <div className="flex items-center justify-between p-4 sm:p-6 bg-gradient-to-r from-emerald-600 to-teal-600 text-white">
+            <div className="flex min-w-0 items-center">
               <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
                 <img src="/logo.png" alt="TVSA Academy Logo" className="w-8 h-8 rounded-lg" />
               </div>
-              <div className="ml-3">
-                <h1 className="text-lg font-bold text-white">TVSA Academy</h1>
-                <p className="text-xs text-emerald-100">Management Portal</p>
+              <div className="ml-3 min-w-0">
+                <h1 className="truncate text-base font-bold text-white sm:text-lg">TVSA Academy</h1>
+                <p className="truncate text-xs text-emerald-100">Management Portal</p>
               </div>
             </div>
             <Button
@@ -117,12 +117,12 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
 
           {/* User info */}
           <div className="p-4 bg-gradient-to-r from-emerald-50 to-teal-50 border-b border-emerald-100">
-            <div className="flex items-center">
+            <div className="flex min-w-0 items-center">
               <div className="w-12 h-12 bg-gradient-to-r from-emerald-400 to-teal-400 rounded-full flex items-center justify-center text-white">
                 <User className="w-6 h-6" />
               </div>
-              <div className="ml-3">
-                <p className="text-sm font-semibold text-gray-900">{user?.name}</p>
+              <div className="ml-3 min-w-0">
+                <p className="truncate text-sm font-semibold text-gray-900">{user?.name}</p>
                 <Badge className="bg-emerald-100 text-emerald-800 text-xs border-0">
                   {user?.role}
                 </Badge>
@@ -190,11 +190,11 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
       </div>
 
       {/* Main content */}
-      <div className="flex-1 lg:ml-0 overflow-hidden">
+      <div className="min-w-0 flex-1 overflow-x-hidden lg:ml-0">
         {/* Top bar */}
         <div className="sticky top-0 z-30 bg-white/80 backdrop-blur-md border-b border-gray-200 shadow-sm">
-          <div className="flex items-center justify-between px-4 py-4 lg:px-8">
-            <div className="flex items-center space-x-4">
+          <div className="flex items-center justify-between gap-3 px-3 py-3 sm:px-4 sm:py-4 lg:px-8">
+            <div className="flex min-w-0 items-center gap-3 sm:gap-4">
               <Button
                 variant="ghost"
                 size="icon"
@@ -204,9 +204,9 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
                 <Menu className="w-5 h-5" />
               </Button>
               
-              <div className="flex-1">
+              <div className="min-w-0 flex-1">
                 <motion.h1 
-                  className="text-2xl font-bold text-gray-900 bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent"
+                  className="break-words bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-xl font-bold leading-tight text-transparent sm:text-2xl"
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                 >
@@ -214,7 +214,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
                 </motion.h1>
                 {subtitle && (
                   <motion.p 
-                    className="text-sm text-gray-600 mt-1"
+                    className="mt-1 break-words text-xs text-gray-600 sm:text-sm"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.1 }}
@@ -225,7 +225,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
               </div>
             </div>
 
-            <div className="flex items-center space-x-4">
+            <div className="hidden min-w-0 items-center space-x-4 md:flex">
               <Badge className="bg-gradient-to-r from-emerald-100 to-teal-100 text-emerald-800 border-0 hidden sm:flex">
                 Thinker's Village Soccer Academy
               </Badge>
@@ -234,12 +234,12 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
         </div>
 
         {/* Page content */}
-        <main className="p-4 lg:p-8 overflow-y-auto h-[calc(100vh-80px)]">
+        <main className="min-h-[calc(100svh-73px)] overflow-y-auto overflow-x-hidden p-3 sm:p-4 lg:h-[calc(100vh-80px)] lg:p-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="w-full"
+            className="w-full min-w-0"
           >
             {children}
           </motion.div>

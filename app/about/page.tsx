@@ -80,7 +80,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary-600 to-blue-600 text-white py-20">
+      <section className="relative bg-gradient-to-br from-primary-600 to-blue-600 py-16 text-white sm:py-20">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -88,8 +88,8 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
             className="max-w-4xl mx-auto text-center"
           >
-            <h1 className="text-5xl font-bold mb-6">About TVSA Academy</h1>
-            <p className="text-xl leading-relaxed mb-8">
+            <h1 className="mb-5 text-4xl font-bold sm:mb-6 sm:text-5xl">About TVSA Academy</h1>
+            <p className="mb-6 text-base leading-relaxed sm:mb-8 sm:text-xl">
               Thinker's Village Soccer Academy is dedicated to nurturing young soccer talent 
               in Paynesville, Liberia. We provide comprehensive development programs for under-15 
               and other youth teams, focusing on skill building, character development, and competitive play.
@@ -111,9 +111,9 @@ export default function AboutPage() {
       </section>
 
       {/* Mission & Vision */}
-      <section className="py-20 bg-gray-50">
+      <section className="bg-gray-50 py-16 sm:py-20">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="grid gap-8 md:grid-cols-2 md:gap-12">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -121,9 +121,9 @@ export default function AboutPage() {
             >
               <div className="mb-6">
                 <Target className="w-12 h-12 text-primary-600 mb-4" />
-                <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Mission</h2>
+                <h2 className="mb-4 text-2xl font-bold text-gray-900 sm:text-3xl">Our Mission</h2>
               </div>
-              <p className="text-lg text-gray-600 leading-relaxed">
+              <p className="text-base leading-relaxed text-gray-600 sm:text-lg">
                 To provide exceptional soccer training and development opportunities for young athletes 
                 in Thinker's Village and surrounding areas, fostering both athletic excellence and 
                 personal growth through the beautiful game.
@@ -137,9 +137,9 @@ export default function AboutPage() {
             >
               <div className="mb-6">
                 <Star className="w-12 h-12 text-primary-600 mb-4" />
-                <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Vision</h2>
+                <h2 className="mb-4 text-2xl font-bold text-gray-900 sm:text-3xl">Our Vision</h2>
               </div>
-              <p className="text-lg text-gray-600 leading-relaxed">
+              <p className="text-base leading-relaxed text-gray-600 sm:text-lg">
                 To become the leading youth soccer development center in Liberia, producing skilled, 
                 disciplined, and well-rounded athletes who excel both on and off the field, while 
                 contributing positively to their communities.
@@ -150,16 +150,16 @@ export default function AboutPage() {
       </section>
 
       {/* Core Values */}
-      <section className="py-20 bg-white">
+      <section className="bg-white py-16 sm:py-20">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="mb-10 text-center sm:mb-16"
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Core Values</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <h2 className="mb-4 text-3xl font-bold text-gray-900 sm:text-4xl">Our Core Values</h2>
+            <p className="mx-auto max-w-3xl text-base text-gray-600 sm:text-xl">
               The principles that guide everything we do at TVSA Academy
             </p>
           </motion.div>

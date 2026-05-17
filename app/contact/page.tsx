@@ -102,7 +102,7 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-primary-600 to-blue-600 text-white py-20">
+      <section className="relative bg-gradient-to-br from-primary-600 to-blue-600 py-16 text-white sm:py-20">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -110,8 +110,8 @@ export default function ContactPage() {
             transition={{ duration: 0.6 }}
             className="max-w-4xl mx-auto text-center"
           >
-            <h1 className="text-5xl font-bold mb-6">Contact TVSA Academy</h1>
-            <p className="text-xl leading-relaxed mb-8">
+            <h1 className="mb-5 text-4xl font-bold sm:mb-6 sm:text-5xl">Contact TVSA Academy</h1>
+            <p className="mb-6 text-base leading-relaxed sm:mb-8 sm:text-xl">
               Get in touch with Thinker's Village Soccer Academy. We're here to answer your questions 
               and help you join our soccer family.
             </p>
@@ -120,9 +120,9 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Information */}
-      <section className="py-20 bg-gray-50">
+      <section className="bg-gray-50 py-16 sm:py-20">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+          <div className="mb-10 grid gap-6 md:grid-cols-2 lg:mb-16 lg:grid-cols-4 lg:gap-8">
             {contactInfo.map((info, index) => (
               <motion.div
                 key={index}
@@ -145,7 +145,7 @@ export default function ContactPage() {
             ))}
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
             {/* Contact Form */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}

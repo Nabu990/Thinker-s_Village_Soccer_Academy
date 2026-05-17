@@ -31,7 +31,7 @@ import { Suspense } from 'react'
 
 // Loading placeholder for 3D component
 const FootballField = () => (
-  <div className="w-full h-96 bg-gradient-to-br from-green-800 to-green-600 rounded-lg flex items-center justify-center">
+  <div className="flex h-64 w-full items-center justify-center rounded-lg bg-gradient-to-br from-green-800 to-green-600 sm:h-80 lg:h-96">
     <div className="text-white text-center">
       <div className="w-24 h-24 border-4 border-white rounded-full mx-auto mb-4 flex items-center justify-center">
         <div className="w-8 h-8 bg-white rounded-full"></div>
@@ -46,11 +46,11 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Premium Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative flex min-h-[100svh] items-center justify-center overflow-hidden py-20 sm:py-24">
         {/* Background Pattern */}
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-900 via-emerald-800 to-teal-900">
           <div className="absolute inset-0 bg-black/20"></div>
-          <div className="absolute inset-0">
+          <div className="absolute inset-0 hidden sm:block">
             <div className="absolute top-20 left-20 w-72 h-72 bg-emerald-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
             <div className="absolute top-40 right-20 w-72 h-72 bg-teal-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse animation-delay-2000"></div>
             <div className="absolute -bottom-8 left-40 w-72 h-72 bg-emerald-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse animation-delay-4000"></div>
@@ -63,7 +63,7 @@ export default function HomePage() {
             <div className="flex items-center justify-between h-16">
               <div className="flex items-center space-x-2">
                 <img src="/logo.png" alt="TVSA Academy Logo" className="w-8 h-8 rounded-full" />
-                <span className="text-white font-bold text-xl">TVSA Academy</span>
+                <span className="text-base font-bold text-white sm:text-xl">TVSA Academy</span>
               </div>
               <div className="hidden md:flex items-center space-x-8">
                 <Link href="#programs" className="text-white/90 hover:text-white transition-colors">Programs</Link>
@@ -76,49 +76,59 @@ export default function HomePage() {
                   </Button>
                 </Link>
               </div>
+              <div className="flex items-center gap-2 md:hidden">
+                <Link href="/auth/login" className="text-sm font-medium text-white/90">
+                  Login
+                </Link>
+                <Link href="/auth/register">
+                  <Button size="sm" className="bg-white text-emerald-800 hover:bg-gray-100">
+                    Join
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         </nav>
 
         {/* Hero Content */}
-        <div className="relative z-10 container mx-auto px-4 pt-24">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="container relative z-10 mx-auto px-4 pt-8 sm:pt-12">
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <Badge className="mb-6 bg-yellow-500 text-white hover:bg-yellow-600">
+              <Badge className="mb-5 bg-yellow-500 text-white hover:bg-yellow-600 sm:mb-6">
                 <Star className="w-4 h-4 mr-2" />
                 Premier Soccer Academy in Liberia
               </Badge>
               
-              <h1 className="text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+              <h1 className="mb-5 break-words text-4xl font-bold leading-tight text-white sm:text-5xl lg:mb-6 lg:text-7xl">
                 Shape the Future
                 <span className="block text-emerald-300">of Liberian Football</span>
               </h1>
               
-              <p className="text-xl text-white/90 mb-8 leading-relaxed">
+              <p className="mb-6 max-w-2xl text-base leading-relaxed text-white/90 sm:text-lg lg:mb-8 lg:text-xl">
                 Thinker's Village Soccer Academy transforms young talent into professional athletes 
                 through elite training, character development, and international exposure.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 mb-12">
-                <Link href="/auth/register">
-                  <Button size="lg" className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white font-bold px-8 py-4 text-lg shadow-lg transform transition-all duration-300 border border-yellow-400/20 hover:border-yellow-300/40">
+              <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:gap-4 lg:mb-12">
+                <Link href="/auth/register" className="w-full sm:w-auto">
+                  <Button size="lg" className="w-full border border-yellow-400/20 bg-gradient-to-r from-yellow-500 to-yellow-600 px-5 py-3 text-base font-bold text-white shadow-lg transition-all duration-300 hover:from-yellow-600 hover:to-yellow-700 hover:border-yellow-300/40 sm:w-auto sm:px-8 sm:py-4 sm:text-lg">
                     <Zap className="w-5 h-5 mr-2" />
                     Start Your Journey
                   </Button>
                 </Link>
-                <Link href="/about">
-                  <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-emerald-800 font-bold px-8 py-4 text-lg shadow-lg transform transition-all duration-300">
+                <Link href="/about" className="w-full sm:w-auto">
+                  <Button size="lg" variant="outline" className="w-full border-white px-5 py-3 text-base font-bold text-white shadow-lg transition-all duration-300 hover:bg-white hover:text-emerald-800 sm:w-auto sm:px-8 sm:py-4 sm:text-lg">
                     <Play className="w-5 h-5 mr-2" />
                     Watch Our Story
                   </Button>
                 </Link>
               </div>
 
-              <div className="grid grid-cols-3 gap-8">
+              <div className="grid grid-cols-3 gap-3 sm:gap-8">
                 {[
                   { icon: Users, label: "50+ Players", value: "50+" },
                   { icon: Trophy, label: "Tournaments", value: "15+" },
@@ -138,8 +148,8 @@ export default function HomePage() {
                         <stat.icon className="w-6 h-6 text-yellow-400 relative z-10 group-hover:text-yellow-300 transition-colors duration-300" />
                       </div>
                     </div>
-                    <div className="text-2xl font-bold text-white group-hover:text-yellow-300 transition-colors duration-300">{stat.value}</div>
-                    <div className="text-sm text-white/70 group-hover:text-yellow-200 transition-colors duration-300">{stat.label}</div>
+                    <div className="text-xl font-bold text-white transition-colors duration-300 group-hover:text-yellow-300 sm:text-2xl">{stat.value}</div>
+                    <div className="text-xs text-white/70 transition-colors duration-300 group-hover:text-yellow-200 sm:text-sm">{stat.label}</div>
                   </motion.div>
                 ))}
               </div>
@@ -149,7 +159,7 @@ export default function HomePage() {
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative"
+              className="relative mx-auto w-full max-w-xl lg:max-w-none"
             >
               <Suspense fallback={<FootballField />}>
                 <FootballField />
@@ -160,7 +170,7 @@ export default function HomePage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="absolute -top-6 -right-6 bg-white rounded-lg shadow-xl p-4"
+                className="absolute -right-2 -top-4 hidden rounded-lg bg-white p-3 shadow-xl sm:block lg:-right-6 lg:-top-6 lg:p-4"
               >
                 <div className="flex items-center space-x-3">
                   <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center">
@@ -177,7 +187,7 @@ export default function HomePage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.6 }}
-                className="absolute -bottom-6 -left-6 bg-white rounded-lg shadow-xl p-4"
+                className="absolute -bottom-4 -left-2 hidden rounded-lg bg-white p-3 shadow-xl sm:block lg:-bottom-6 lg:-left-6 lg:p-4"
               >
                 <div className="flex items-center space-x-3">
                   <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center">
@@ -195,24 +205,24 @@ export default function HomePage() {
       </section>
 
       {/* Premium Features Section */}
-      <section id="programs" className="py-24 bg-white">
+      <section id="programs" className="bg-white py-16 sm:py-24">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="mb-10 text-center sm:mb-16"
           >
             <Badge className="mb-4 bg-emerald-100 text-emerald-800">Our Excellence</Badge>
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="mb-4 text-3xl font-bold text-gray-900 sm:mb-6 lg:text-5xl">
               World-Class Training Programs
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="mx-auto max-w-3xl text-base text-gray-600 sm:text-xl">
               Comprehensive development programs designed to nurture talent from grassroots to elite levels
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className="grid gap-6 lg:grid-cols-3 lg:gap-8">
             {[
               {
                 icon: Target,
@@ -272,24 +282,24 @@ export default function HomePage() {
       </section>
 
       {/* Age Groups Section */}
-      <section className="py-24 bg-gradient-to-br from-emerald-50 to-teal-50">
+      <section className="bg-gradient-to-br from-emerald-50 to-teal-50 py-16 sm:py-24">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="mb-10 text-center sm:mb-16"
           >
             <Badge className="mb-4 bg-yellow-100 text-yellow-800">Age-Specific Programs</Badge>
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="mb-4 text-3xl font-bold text-gray-900 sm:mb-6 lg:text-5xl">
               Training for Every Age
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="mx-auto max-w-3xl text-base text-gray-600 sm:text-xl">
               Age-appropriate curricula designed to maximize development at every stage
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid gap-6 md:grid-cols-3 lg:gap-8">
             {[
               {
                 age: "U-15",
@@ -377,24 +387,24 @@ export default function HomePage() {
       </section>
 
       {/* Achievements Section */}
-      <section className="py-24 bg-white">
+      <section className="bg-white py-16 sm:py-24">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="mb-10 text-center sm:mb-16"
           >
             <Badge className="mb-4 bg-yellow-100 text-yellow-800">Our Success</Badge>
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="mb-4 text-3xl font-bold text-gray-900 sm:mb-6 lg:text-5xl">
               Achievements & Recognition
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="mx-auto max-w-3xl text-base text-gray-600 sm:text-xl">
               Proud moments that showcase our commitment to excellence
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
             {[
               { icon: Trophy, title: "Champions", value: "15+", description: "Tournament Wins" },
               { icon: Users, title: "Players", value: "50+", description: "Active Players" },
@@ -409,12 +419,12 @@ export default function HomePage() {
                 className="text-center"
               >
                 <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                  <CardContent className="p-8">
+                  <CardContent className="p-5 sm:p-8">
                     <div className="w-16 h-16 bg-yellow-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
                       <achievement.icon className="w-8 h-8 text-yellow-600" />
                     </div>
-                    <div className="text-4xl font-bold text-gray-900 mb-2">{achievement.value}</div>
-                    <div className="text-xl font-semibold text-gray-800 mb-2">{achievement.title}</div>
+                    <div className="mb-2 text-3xl font-bold text-gray-900 sm:text-4xl">{achievement.value}</div>
+                    <div className="mb-2 text-lg font-semibold text-gray-800 sm:text-xl">{achievement.title}</div>
                     <div className="text-gray-600">{achievement.description}</div>
                   </CardContent>
                 </Card>
@@ -425,7 +435,7 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-r from-emerald-600 to-teal-600">
+      <section className="bg-gradient-to-r from-emerald-600 to-teal-600 py-16 sm:py-24">
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -434,23 +444,23 @@ export default function HomePage() {
             className="max-w-4xl mx-auto"
           >
             <Badge className="mb-6 bg-yellow-500 text-white hover:bg-yellow-600">Join Our Academy</Badge>
-            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
+            <h2 className="mb-5 text-3xl font-bold text-white sm:mb-6 lg:text-5xl">
               Start Your Journey to
               <span className="block text-yellow-300">Football Excellence</span>
             </h2>
-            <p className="text-xl text-white/90 mb-8 leading-relaxed">
+            <p className="mb-6 text-base leading-relaxed text-white/90 sm:mb-8 sm:text-xl">
               Join Thinker's Village Soccer Academy and become part of Liberia's premier youth development program. 
               Transform your passion into profession with world-class coaching and facilities.
             </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Link href="/auth/register">
-                <Button size="lg" className="bg-yellow-500 hover:bg-yellow-600 text-white font-bold px-8 py-4 text-lg">
+            <div className="flex flex-col justify-center gap-3 sm:flex-row sm:gap-6">
+              <Link href="/auth/register" className="w-full sm:w-auto">
+                <Button size="lg" className="w-full bg-yellow-500 px-5 py-3 text-base font-bold text-white hover:bg-yellow-600 sm:w-auto sm:px-8 sm:py-4 sm:text-lg">
                   <Zap className="w-5 h-5 mr-2" />
                   Register Today
                 </Button>
               </Link>
-              <Link href="/contact">
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-emerald-800 font-bold px-8 py-4 text-lg">
+              <Link href="/contact" className="w-full sm:w-auto">
+                <Button size="lg" variant="outline" className="w-full border-white px-5 py-3 text-base font-bold text-white hover:bg-white hover:text-emerald-800 sm:w-auto sm:px-8 sm:py-4 sm:text-lg">
                   <MapPin className="w-5 h-5 mr-2" />
                   Visit Academy
                 </Button>

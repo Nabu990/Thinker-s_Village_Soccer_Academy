@@ -50,6 +50,8 @@
 
 html {
   scroll-behavior: smooth;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -64,6 +66,23 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  min-width: 0;
+  overflow-x: hidden;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  max-width: 100%;
 }
 
 @layer base {
@@ -79,6 +98,13 @@ body {
   h4 { font-size: 1.5rem; }
   h5 { font-size: 1.25rem; }
   h6 { font-size: 1.125rem; }
+
+  @media (max-width: 640px) {
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.625rem; }
+    h3 { font-size: 1.375rem; }
+    h4 { font-size: 1.25rem; }
+  }
 }
 
 @layer utilities {
@@ -159,19 +185,19 @@ body {
   }
   
   .btn-primary {
-    @apply bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-6 py-3 rounded-xl font-semibold hover:from-emerald-700 hover:to-teal-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl;
+    @apply bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-4 sm:px-6 py-3 rounded-xl font-semibold hover:from-emerald-700 hover:to-teal-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl text-center;
   }
   
   .btn-secondary {
-    @apply bg-gradient-to-r from-teal-600 to-cyan-600 text-white px-6 py-3 rounded-xl font-semibold hover:from-teal-700 hover:to-cyan-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl;
+    @apply bg-gradient-to-r from-teal-600 to-cyan-600 text-white px-4 sm:px-6 py-3 rounded-xl font-semibold hover:from-teal-700 hover:to-cyan-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl text-center;
   }
   
   .btn-outline {
-    @apply border-2 border-emerald-600 text-emerald-600 px-6 py-3 rounded-xl font-semibold hover:bg-emerald-600 hover:text-white transition-all duration-300 transform hover:scale-105;
+    @apply border-2 border-emerald-600 text-emerald-600 px-4 sm:px-6 py-3 rounded-xl font-semibold hover:bg-emerald-600 hover:text-white transition-all duration-300 transform hover:scale-105 text-center;
   }
   
   .btn-ghost {
-    @apply text-emerald-600 hover:bg-emerald-50 px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105;
+    @apply text-emerald-600 hover:bg-emerald-50 px-4 sm:px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 text-center;
   }
   
   .input-field {
@@ -183,11 +209,11 @@ body {
   }
   
   .card {
-    @apply bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-6 card-hover border border-gray-100;
+    @apply bg-white/90 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-xl p-4 sm:p-6 card-hover border border-gray-100 min-w-0;
   }
   
   .card-glass {
-    @apply glass-effect rounded-2xl shadow-xl p-6 card-hover;
+    @apply glass-effect rounded-xl sm:rounded-2xl shadow-xl p-4 sm:p-6 card-hover min-w-0;
   }
   
   .nav-link {
@@ -219,7 +245,7 @@ body {
   }
   
   .section-padding {
-    @apply py-16 px-4 lg:px-8;
+    @apply py-12 sm:py-16 px-4 lg:px-8;
   }
   
   .container-max {

@@ -75,9 +75,9 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 px-4 relative overflow-hidden">
+    <div className="relative flex min-h-[100svh] items-center justify-center overflow-x-hidden bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 px-3 py-6 sm:px-4">
       {/* Background decoration */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 hidden overflow-hidden sm:block">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-emerald-400/20 to-teal-400/20 rounded-full blur-3xl"></div>
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-teal-400/20 to-cyan-400/20 rounded-full blur-3xl"></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-emerald-300/10 to-teal-300/10 rounded-full blur-3xl animate-pulse"></div>
@@ -87,33 +87,33 @@ export default function LoginPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="w-full max-w-md relative z-10"
+        className="relative z-10 w-full max-w-md"
       >
         <Card className="shadow-2xl bg-white/90 backdrop-blur-sm border border-emerald-100">
-          <CardHeader className="text-center pb-8">
+          <CardHeader className="pb-6 text-center sm:pb-8">
             <motion.div 
-              className="mx-auto w-20 h-20 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg"
+              className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 shadow-lg sm:mb-6 sm:h-20 sm:w-20"
               initial={{ scale: 0.9 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.3, delay: 0.2 }}
             >
-              <img src="/logo.png" alt="TVSA Academy Logo" className="w-14 h-14 rounded-xl" />
+              <img src="/logo.png" alt="TVSA Academy Logo" className="h-11 w-11 rounded-xl sm:h-14 sm:w-14" />
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.3 }}
             >
-              <CardTitle className="text-3xl font-bold text-gradient-emerald mb-2">
+              <CardTitle className="mb-2 text-2xl font-bold text-gradient-emerald sm:text-3xl">
                 Welcome Back
               </CardTitle>
-              <CardDescription className="text-gray-600 text-lg">
+              <CardDescription className="text-sm text-gray-600 sm:text-lg">
                 Sign in to your Thinker's Village Soccer Academy account
               </CardDescription>
             </motion.div>
           </CardHeader>
           <CardContent className="pt-0">
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
